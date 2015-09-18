@@ -1,5 +1,5 @@
 module HTML
-  module AutoTag
+  class AutoTag
     VERSION = "0.0.1"
   end
 end
