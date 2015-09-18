@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "HTML-AutoTag"
   spec.version       = HTML::AutoTag::VERSION
   spec.authors       = ["jeffa"]
-  spec.email         = ["jeffa@unlocalhost.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.email         = ["info@unlocalhost.com"]
+  spec.description   = %q{Just another HTML tag generator for ruby.}
+  spec.summary       = %q{Generate HTML tags with ease (HTML4, HTML5, XHTML and SVG).}
+  spec.homepage      = "https://github.com/jeffa/html-autotag-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

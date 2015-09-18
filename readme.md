@@ -1,28 +1,25 @@
-Spreadsheet-HTML (ruby)
-=======================
-Just another HTML table generator for ruby.
+HTML-AutoTag (ruby)
+===================
+Just another HTML tag generator for ruby.
 
 Description
 -----------
-Generate HTML tables with ease (HTML4, XHTML and HTML5).
+Generate HTML tags with ease (HTML4, HTML5, XHTML and SVG).
 
 Synopsis
 --------
 ```ruby
-require 'Spreadsheet/HTML'
+require 'HTML/AutoTag'
 
-generator = Spreadsheet::HTML.new
+auto = HTML::AutoTag.new
 
-puts generator.generate( Array[ [1,2,3], [4,5,6] ] )
+puts auto.tag( 'tag' => 'p', 'cdata' => 'a paragraph' )
 ```
 
 Installation
 ------------
 We are currently pre-Alpha, so installation is not recommended.
-Also, bundler and test-unit are required, which is not awesome.
 
-* gem install bundler
-* gem install test-unit
 * rake test
 * rake build
 * ~~rake install~~ :skull:
