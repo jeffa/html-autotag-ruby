@@ -23,4 +23,14 @@ class TestAttrs < Test::Unit::TestCase
 
     end
 
+    def test_simple_attrs
+        attr = HTML::AutoAttr.new( { 'foo' => 'bar', 'baz' => 'qux' }, 1 )
+        assert_equal( ' foo="bar"', attr.to_s,          "correct simple attrs" )
+    end
+
+    def test_rotate_attrs
+        attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'], 'baz' => ['foo','qux'] }, 1 )
+        assert_equal( ' foo="bar"', attr.to_s,          "correct simple attrs" )
+    end
+
 end
