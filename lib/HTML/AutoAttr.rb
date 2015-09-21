@@ -3,14 +3,14 @@ module HTML
     class AutoAttr
 
         def key( key )
-            key = key.gsub( /\s+/, '' )
-            key = key.gsub( /["'>=\/]/, '' )
+            key.gsub!( /\s+/, '' )
+            key.gsub!( /["'>=\/]/, '' )
             return key
         end
 
         def val( val )
-            val = '' if val.match( /^\s+$/ )
-            val = val.gsub( /"/, '' )
+            return '' if val.match( /^\s+$/ )
+            val.gsub!( /"/, '' )
             return val
         end
 
