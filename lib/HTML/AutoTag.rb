@@ -1,4 +1,5 @@
 require "HTML/AutoTag/version"
+require "HTML/AutoAttr"
 
 module HTML
 
