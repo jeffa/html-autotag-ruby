@@ -20,7 +20,7 @@ module HTML
                     val = @hash[key]
                     val = stringify( val )  if val.kind_of?( Hash )
                     val = rotate( val )     if val.kind_of?( Array )
-                    str = sprintf( ' %s="%s"', key( key ), val( val ) )
+                    str += sprintf( ' %s="%s"', key( key ), val( val ) )
                 end
                 seen[key] = 1
             end
@@ -58,10 +58,9 @@ module HTML
                 else
                     val = hash[key]
                 end
-                return "#{key}: #{val}"
+                "#{key}: #{val}"
             }
-
-            return vals.join( '; ' ) + vals.length ? ';' : ''
+            return vals.join( '; ' ) + (vals.length ? ';' : '')
 
         end
 

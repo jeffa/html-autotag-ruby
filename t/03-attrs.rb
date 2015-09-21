@@ -25,12 +25,21 @@ class TestAttrs < Test::Unit::TestCase
 
     def test_simple_attrs
         attr = HTML::AutoAttr.new( { 'foo' => 'bar', 'baz' => 'qux' }, 1 )
-        assert_equal( ' foo="bar"', attr.to_s,          "correct simple attrs" )
+        assert_equal( ' baz="qux" foo="bar"', attr.to_s,          "correct simple attrs" )
     end
 
     def test_rotate_attrs
         attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'], 'baz' => ['foo','qux'] }, 1 )
-        assert_equal( ' foo="bar"', attr.to_s,          "correct simple attrs" )
+        assert_equal( ' baz="foo" foo="bar"', attr.to_s,          "correct rotate attrs" )
+        assert_equal( ' baz="qux" foo="baz"', attr.to_s,          "correct rotate attrs" )
+        assert_equal( ' baz="foo" foo="qux"', attr.to_s,          "correct rotate attrs" )
+        assert_equal( ' baz="qux" foo="bar"', attr.to_s,          "correct rotate attrs" )
+        assert_equal( ' baz="foo" foo="baz"', attr.to_s,          "correct rotate attrs" )
+    end
+
+    def test_nested_attrs
+        attr = HTML::AutoAttr.new( { 'foo' => { 'bar' => 'baz', 'qux' => 'foo' } }, 1 )
+        assert_equal( ' foo="bar: baz; qux: foo;"', attr.to_s,          "correct rotate attrs" )
     end
 
 end
