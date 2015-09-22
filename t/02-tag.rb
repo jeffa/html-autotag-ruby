@@ -22,4 +22,9 @@ class TestTag < Test::Unit::TestCase
         assert_equal( '<hr />', auto.tag( 'tag' => 'hr' ),  "empty tag correct" )
     end
 
+    def test_nonempty
+        auto = HTML::AutoTag.new
+        assert_equal( '<p>0</p>', auto.tag( 'tag' => 'p', 'cdata' => 0 ),  "paragraph tag correct" )
+    end
+
 end

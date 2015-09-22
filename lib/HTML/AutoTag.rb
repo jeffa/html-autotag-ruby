@@ -18,25 +18,50 @@ module HTML
 
         def tag( params = {} )
 
-            attr = HTML::AutoAttr.new( params['attr'], @sorted )
+            attr = HTML::AutoAttr.new( params['attr'] || {}, @sorted )
+
             # emtpy tag
-            if defined?( params['cdata'] ) != nil
+            unless params['cdata'] and params['cdata'].to_s.length
                 return '<' + params['tag'] + ' />' + @newline
             end
 
+            cdata = ''
+            no_post_indent = 0
             if params['cdata'].kind_of?( Array )
 
                 if params['cdata'][0].kind_of?( Hash )
 
-                else
+                    @level += 1
+                    cdata = @newline
 
+                    params['cdata'].each do |hash|
+                        cdata += tag( hash )
+                    end
+                    @level -= 1
+
+                else
+                    str = ''
+                    params['data'].each do |scalar|
+                        str += tag( 'tag' => params['tag'], 'attr' => attr, 'cdata' => scalar )
+                    end
+                    return str
                 end
 
             elsif params['cdata'].kind_of?( Hash )
+                @level += 1
+                cdata = @newline + tag( params['cdata'] )
+                @level -= 1
 
             else
-
+                # do encoding here
+                cdata = params['cdata']
+                no_post_indent = 1
             end
+
+            return (@indent * @level)  \
+                + '<' + params['tag'] + attr.to_s + '>'  \
+                + cdata.to_s + ( no_post_indent ? '' : ( @indent * @level ) )  \
+                + '</' + params['tag'] + '>' + @newline
 
         end
 
