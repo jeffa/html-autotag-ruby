@@ -68,3 +68,47 @@ module HTML
   end
 
 end
+
+=begin rdoc
+
+= NAME
+
+HTML::AutoTag - Just another HTML tag generator.
+
+== SYNOPSIS
+
+<code>
+require 'HTML/AutoTag'
+tag = HTML::AutoTag.new
+
+puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph' )
+</code>
+
+== DESCRIPTION
+
+Generate nested HTML (HTML4, XHTML and HTML5) tags with custom indentation,
+custom encoding and automatic attribute value rotation.
+
+== SEE ALSO
+
+* ttp://www.w3.org/TR/html5/syntax.html
+
+== GITHUB
+
+The Github project is https://github.com/jeffa/html-autotag-ruby
+
+== SUPPORT
+
+You can find documentation for this module with the ri command.
+
+ri HTML::AutoTag
+
+== AUTHOR
+
+Jeff Anderson, <jeffa at cpan.org>
+
+== LICENSE AND COPYRIGHT
+
+Copyright 2015 Jeff Anderson. (See License.md shipped with distro)
+
+=end

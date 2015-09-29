@@ -67,3 +67,49 @@ module HTML
     end
 
 end
+
+=begin rdoc
+
+= NAME
+
+HTML::AutoAttr - Just another HTML attribute generator.
+
+== SYNOPSIS
+
+<code>
+require 'HTML/AutoAttr'
+attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
+
+4.times puts attr.to_s
+</code>
+
+== DESCRIPTION
+
+This module will translate nested hash keys and values into HTML
+tag attributes that can have ther values automatically rotated.
+
+== SEE ALSO
+
+* http://www.w3.org/TR/html5/syntax.html#attributes-0
+
+* http://www.w3.org/TR/html-markup/syntax.html#syntax-attributes
+
+== GITHUB
+
+The Github project is https://github.com/jeffa/html-autotag-ruby
+
+== SUPPORT
+
+You can find documentation for this module with the ri command.
+
+ri HTML::AutoAttr
+
+== AUTHOR
+
+Jeff Anderson, <jeffa at cpan.org>
+
+== LICENSE AND COPYRIGHT
+
+Copyright 2015 Jeff Anderson. (See License.md shipped with distro)
+
+=end
