@@ -80,7 +80,7 @@ HTML::AutoAttr - Just another HTML attribute generator.
 require 'HTML/AutoAttr'
 attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
 
-4.times puts attr.to_s
+4.times { puts attr.to_s }
 </code>
 
 == DESCRIPTION
