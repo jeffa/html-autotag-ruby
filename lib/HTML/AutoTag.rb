@@ -9,12 +9,12 @@ module HTML
         attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
 
         def initialize( params = {} )
-            @encodes    = params['encodes'] || ''
+            @encodes    = params['encodes'] ? 1 : 0
             @indent     = params['indent']  || ''
             @level      = params['level']   || 0
             @sorted     = params['sorted']  || 0
             @newline    = params['indent'] ? "\n" : ''
-
+            @encoder    = HTMLEntities.new
         end
 
         def tag( params = {} )
@@ -54,8 +54,8 @@ module HTML
                 @level -= 1
 
             else
-                # do encoding here
                 cdata = params['cdata']
+                @encoder.encode( cdata ) if @encodes == 1
                 no_post_indent = 1
             end
 
