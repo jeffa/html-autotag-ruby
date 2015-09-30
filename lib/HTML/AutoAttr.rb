@@ -11,6 +11,7 @@ module HTML
 
         def to_s
 
+            return '' unless @hash.kind_of?( Hash )
             keys = @sorted ? @hash.keys.sort : @hash.keys
             str  = ''
             seen = {}

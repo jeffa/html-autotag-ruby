@@ -12,8 +12,8 @@ module HTML
             @encodes    = params['encodes'] ? 1 : 0
             @indent     = params['indent']  || ''
             @level      = params['level']   || 0
-            @sorted     = params['sorted']  || 0
-            @newline    = params['indent'] ? "\n" : ''
+            @sorted     = params['sorted']  ? 1 : 0
+            @newline    = params['indent']  ? "\n" : ''
             @encoder    = HTMLEntities.new
         end
 
