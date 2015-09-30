@@ -1,6 +1,7 @@
 Revision history for html-autotag-ruby
 
 0.0.3
+    - corrected misspelled key name (data => cdata)
 
 0.0.2
     - added htmlentities

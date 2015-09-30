@@ -42,7 +42,7 @@ module HTML
 
                 else
                     str = ''
-                    params['data'].each do |scalar|
+                    params['cdata'].each do |scalar|
                         str += tag( 'tag' => params['tag'], 'attr' => attr, 'cdata' => scalar )
                     end
                     return str
