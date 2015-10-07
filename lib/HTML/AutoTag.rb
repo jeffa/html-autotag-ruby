@@ -55,7 +55,7 @@ module HTML
 
             else
                 cdata = params['cdata']
-                @encoder.encode( cdata ) if @encodes == 1
+                cdata = @encoder.encode( cdata ) if @encodes == 1
                 no_post_indent = 1
             end
 

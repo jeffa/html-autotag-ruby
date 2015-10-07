@@ -45,6 +45,6 @@ class TestTag < Test::Unit::TestCase
 
     def test_encodes
         auto = HTML::AutoTag.new( 'encodes' => 1 )
-        assert_equal( '<p><0></p>', auto.tag( 'tag' => 'p', 'cdata' => '<0>' ),  "paragraph tag correct" )
+        assert_equal( '<p>&lt;0&gt;</p>', auto.tag( 'tag' => 'p', 'cdata' => '<0>' ),  "paragraph tag correct" )
     end
 end
