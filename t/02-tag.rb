@@ -39,8 +39,8 @@ class TestTag < Test::Unit::TestCase
     def test_level
         auto = HTML::AutoTag.new( 'indent' => ' ',  'level' => 3 )
         assert_equal( "   <p>0</p>\n", auto.tag( 'tag' => 'p', 'cdata' => 0 ),  "paragraph tag correct" )
-        assert_equal( "   <ol>\n    <li>1</li>\n</ol>\n", auto.tag( 'tag' => 'ol', 'cdata' => { 'tag' => 'li', 'cdata' => 1 } ),  "ol tag correct" )
-        assert_equal( "   <ol>\n    <li>1</li>\n    <li>2</li>\n</ol>\n", auto.tag( 'tag' => 'ol', 'cdata' => [{ 'tag' => 'li', 'cdata' => 1 }, { 'tag' => 'li', 'cdata' => 2 }] ),  "ol tag correct" )
+        assert_equal( "   <ol>\n    <li>1</li>\n   </ol>\n", auto.tag( 'tag' => 'ol', 'cdata' => { 'tag' => 'li', 'cdata' => 1 } ),  "ol tag correct" )
+        assert_equal( "   <ol>\n    <li>1</li>\n    <li>2</li>\n   </ol>\n", auto.tag( 'tag' => 'ol', 'cdata' => [{ 'tag' => 'li', 'cdata' => 1 }, { 'tag' => 'li', 'cdata' => 2 }] ),  "ol tag correct" )
     end
 
     def test_encodes

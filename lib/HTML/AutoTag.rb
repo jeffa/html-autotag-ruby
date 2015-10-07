@@ -23,7 +23,7 @@ module HTML
 
             # emtpy tag
             unless params['cdata'] and params['cdata'].to_s.length
-                return '<' + params['tag'] + ' />' + @newline
+                return ( @indent * @level ) + '<' + params['tag'] + ' />' + @newline
             end
 
             cdata = ''
@@ -61,7 +61,7 @@ module HTML
 
             return (@indent * @level)  \
                 + '<' + params['tag'] + attr.to_s + '>'  \
-                + cdata.to_s + ( no_post_indent ? '' : ( @indent * @level ) )  \
+                + cdata.to_s + ( no_post_indent == 1 ? '' : ( @indent * @level ) )  \
                 + '</' + params['tag'] + '>' + @newline
 
         end
