@@ -1,6 +1,6 @@
 HTML-AutoTag (ruby)
 ===================
-Just another HTML tag generator for ruby.
+Just another HTML tag generator for ruby. [![Gem Version](https://badge.fury.io/rb/HTML-AutoTag.svg)](https://badge.fury.io/rb/HTML-AutoTag)
 
 Description
 -----------
