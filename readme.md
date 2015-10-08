@@ -11,9 +11,18 @@ Synopsis
 ```ruby
 require 'HTML/AutoTag'
 
-auto = HTML::AutoTag.new
+auto = HTML::AutoTag.new( 'indent' => '    ' )
 
 puts auto.tag( 'tag' => 'p', 'cdata' => 'a paragraph' )
+
+attr = { 'style' => { 'color' => %w{ red green } } }
+data = %w{ one two three four five six seven eight }
+
+puts auto.tag(
+    'tag'   => 'ol',
+    'attr'  => { 'reversed' => 'reversed' },
+    'cdata' => data.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
+)
 ```
 
 Installation
