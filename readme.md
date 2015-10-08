@@ -18,11 +18,9 @@ puts auto.tag( 'tag' => 'p', 'cdata' => 'a paragraph' )
 
 Installation
 ------------
-We are currently pre-Alpha, so installation is not recommended.
+While you are encouraged to install, please note that this Gem is in Alpha release.
 
-* rake test
-* rake build
-* ~~rake install~~ :skull:
+* gem install HTML-AutoTag
 
 License and Copyright
 ---------------------
