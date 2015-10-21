@@ -84,18 +84,20 @@ HTML::AutoTag - Just another HTML tag generator.
 
 <code>
 require 'HTML/AutoTag'
-tag = HTML::AutoTag.new
+auto = HTML::AutoTag.new
 
 puts auto.tag( 'tag' => 'hr' )
 puts auto.tag( 'tag' => 'h1', 'cdata' => 'heading' )
 puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph', 'attr' => { 'class' => 'para' } )
 
+attr = { 'style' => { 'color' => %w{ odd even } } }
 puts auto.tag(
     'tag'   => 'ol',
     'attr'  => { 'reversed' => 'reversed' },
-    'cdata' => data.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
+    'cdata' => %w{ 1 2 3 4 5 }.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
 )
 
+tr_attr = { 'class' => %w{ odd even } }
 puts auto.tag(
     'tag'   => 'table',
     'attr'  => { 'class' => 'spreadsheet' },
@@ -106,7 +108,7 @@ puts auto.tag(
             'cdata' => {
                 'tag'  => 'th',
                 'attr' => { 'style' => { 'color' => %w{ red green } } },
-                'cdata' => data,
+                'cdata' => %w{ one two three },
             },
         },
         {
@@ -115,7 +117,7 @@ puts auto.tag(
             'cdata' => {
                 'tag'  => 'td',
                 'attr' => { 'style' => { 'color' => %w{ green blue } } },
-                'cdata' => data,
+                'cdata' => %w{ four five six },
             },
         },
         {
@@ -124,7 +126,7 @@ puts auto.tag(
             'cdata' => {
                 'tag'  => 'td',
                 'attr' => { 'style' => { 'color' => %w{ red green } } },
-                'cdata' => data,
+                'cdata' => %w{ seven eight nine },
             },
         },
     ]
