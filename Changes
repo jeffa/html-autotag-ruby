@@ -1,6 +1,9 @@
 Revision history for html-autotag-ruby
 
+0.0.7
+
 0.0.6
+    - fixed attr bug for deeply nested data structures
 
 0.0.5
     - fixed encode bug (basic encoding works)
