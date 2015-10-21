@@ -19,7 +19,11 @@ module HTML
 
         def tag( params = {} )
 
-            attr = HTML::AutoAttr.new( params['attr'] || {}, @sorted )
+            if params['attr'].kind_of?( HTML::AutoAttr )
+                attr = params['attr']
+            else
+                attr = HTML::AutoAttr.new( params['attr'] || {}, @sorted )
+            end
 
             # emtpy tag
             unless params['cdata'] and params['cdata'].to_s.length

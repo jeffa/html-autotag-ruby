@@ -74,8 +74,6 @@ class TestTagAttrs < Test::Unit::TestCase
             'two nested level tags correct'
         )
 
-        tmp1 = %w{ red green }
-        tmp2 = %w{ green blue }
         tr_attr  = { 'class' =>  %w{ odd even } }
         html = auto.tag(
             'tag'   => 'table',
@@ -84,26 +82,38 @@ class TestTagAttrs < Test::Unit::TestCase
                 {
                     'tag'   => 'tr',
                     'attr'  => tr_attr,
-                    'cdata' => data.map{ |d| { 'tag' => 'th', 'attr' => { 'style' => { 'color' => %w{ red green } } }, 'cdata' => d } }
+                    'cdata' => {
+                        'tag'  => 'th',
+                        'attr' => { 'style' => { 'color' => %w{ red green } } },
+                        'cdata' => data,
+                    },
                 },
                 {
                     'tag'   => 'tr',
                     'attr'  => tr_attr,
-                    'cdata' => data.map{ |d| { 'tag' => 'td', 'attr' => { 'style' => { 'color' => tmp2 } }, 'cdata' => d } }
+                    'cdata' => {
+                        'tag'  => 'td',
+                        'attr' => { 'style' => { 'color' => %w{ green blue } } },
+                        'cdata' => data,
+                    },
                 },
                 {
                     'tag'   => 'tr',
                     'attr'  => tr_attr,
-                    'cdata' => data.map{ |d| { 'tag' => 'td', 'attr' => { 'style' => { 'color' => tmp1 } }, 'cdata' => d } }
+                    'cdata' => {
+                        'tag'  => 'td',
+                        'attr' => { 'style' => { 'color' => %w{ red green } } },
+                        'cdata' => data,
+                    },
                 },
             ]
         )
 
-#        assert_equal(
-#            '<table class="spreadsheet"><tr class="odd"><th style="color: red;">one</th><th style="color: green;">two</th><th style="color: red;">three</th></tr><tr class="even"><td style="color: green;">one</td><td style="color: blue;">two</td><td style="color: green;">three</td></tr><tr class="odd"><td style="color: green;">one</td><td style="color: red;">two</td><td style="color: green;">three</td></tr></table>',
-#            html,
-#            'two nested level tags correct - inlined attrs'
-#        )
+        assert_equal(
+            '<table class="spreadsheet"><tr class="odd"><th style="color: red;">one</th><th style="color: green;">two</th><th style="color: red;">three</th></tr><tr class="even"><td style="color: green;">one</td><td style="color: blue;">two</td><td style="color: green;">three</td></tr><tr class="odd"><td style="color: red;">one</td><td style="color: green;">two</td><td style="color: red;">three</td></tr></table>',
+            html,
+            'two nested level tags correct - inlined attrs'
+        )
 
     end
 
