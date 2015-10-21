@@ -86,7 +86,49 @@ HTML::AutoTag - Just another HTML tag generator.
 require 'HTML/AutoTag'
 tag = HTML::AutoTag.new
 
-puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph' )
+puts auto.tag( 'tag' => 'hr' )
+puts auto.tag( 'tag' => 'h1', 'cdata' => 'heading' )
+puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph', 'attr' => { 'class' => 'para' } )
+
+puts auto.tag(
+    'tag'   => 'ol',
+    'attr'  => { 'reversed' => 'reversed' },
+    'cdata' => data.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
+)
+
+puts auto.tag(
+    'tag'   => 'table',
+    'attr'  => { 'class' => 'spreadsheet' },
+    'cdata' => Array[
+        {
+            'tag'   => 'tr',
+            'attr'  => tr_attr,
+            'cdata' => {
+                'tag'  => 'th',
+                'attr' => { 'style' => { 'color' => %w{ red green } } },
+                'cdata' => data,
+            },
+        },
+        {
+            'tag'   => 'tr',
+            'attr'  => tr_attr,
+            'cdata' => {
+                'tag'  => 'td',
+                'attr' => { 'style' => { 'color' => %w{ green blue } } },
+                'cdata' => data,
+            },
+        },
+        {
+            'tag'   => 'tr',
+            'attr'  => tr_attr,
+            'cdata' => {
+                'tag'  => 'td',
+                'attr' => { 'style' => { 'color' => %w{ red green } } },
+                'cdata' => data,
+            },
+        },
+    ]
+)
 </code>
 
 == DESCRIPTION
@@ -94,9 +136,53 @@ puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph' )
 Generate nested HTML (HTML4, XHTML and HTML5) tags with custom indentation,
 custom encoding and automatic attribute value rotation.
 
+== METHODS
+
+* new
+
+Accepts 4 arguments:
+
+    * encodes
+
+        Endcode HTML entities. (boolean)
+
+    * indent
+
+        Pretty print results. (string)
+
+    * level
+
+        Indentation level to start at. (integer)
+
+    * sorted
+
+        Sort attribute names of the tag alphabetically. (boolean)
+
+* tag
+
+Accepts 3 arguments:
+
+    * tag
+
+        The name of the tag. (string)
+
+    * attr
+
+        Attributes and values for the tag (hash)
+
+    * cdata
+
+        The value wrapped by the tag. Types allowed are:
+
+        * scalar - the string to be wrapped by the tag
+
+        * hash - another tag with its own cdata and attributes
+
+        * array - list of scalars or list of more hashes
+
 == SEE ALSO
 
-* ttp://www.w3.org/TR/html5/syntax.html
+* http://www.w3.org/TR/html5/syntax.html
 
 == GITHUB
 
