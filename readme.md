@@ -58,12 +58,20 @@ puts auto.tag(
     ]
 )
 ```
+Also includes HTML::AutoAttr which provides rotating attributes:
+```ruby
+require 'HTML/AutoAttr'
+
+attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
+
+4.times { puts attr.to_s }
+```
 
 Installation
 ------------
-While you are encouraged to install, please note that this Gem is in Alpha release.
-
-* gem install HTML-AutoTag
+```
+gem install HTML-AutoTag
+```
 
 License and Copyright
 ---------------------

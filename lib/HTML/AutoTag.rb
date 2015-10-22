@@ -8,7 +8,7 @@ module HTML
 
         attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
 
-        #params expects the following keys:
+        # params expects the following keys:
         #   * encodes
         #       Endcode HTML entities. (boolean)
         #
@@ -30,7 +30,7 @@ module HTML
             @encoder    = HTMLEntities.new
         end
 
-        #params expects the following keys:
+        # params expects the following keys:
         #
         #   * tag
         #       The name of the tag. (string)

@@ -4,11 +4,20 @@ module HTML
 
         attr_accessor 'hash', 'sorted'
 
+        # expects the following arguments
+        #   * hash
+        #       Contains attribute keys and values
+        #
+        #   * sorted
+        #       Boolean. Whether or not to render attributes in alphabetical order.
+        #
         def initialize( hash = {}, sorted = 0 )
             @hash   = hash
             @sorted = sorted
         end
 
+        # expects no arguments, emits string containing rendered key/value pairs
+        #
         def to_s
 
             return '' unless @hash.kind_of?( Hash )
@@ -29,24 +38,29 @@ module HTML
             return str
         end
 
+        # expects one argument: the key to scrub
         def key( key )
             key = key.gsub( /\s+/, '' )
             key = key.gsub( /["'>=\/]/, '' )
             return key
         end
 
+        # expects one argument: the value to scrub
         def val( val )
             return '' if val.match( /^\s+$/ )
             val = val.gsub( /"/, '' )
             return val
         end
 
+        # expects one argument: the array to rotate
+        # returns the first element before array is rotated
         def rotate( array )
             val = array.shift
             array.push( val )
             return val
         end
 
+        # expects one argument: the hash to 'stringify'
         def stringify( hash )
 
             keys = @sorted ? hash.keys.sort : hash.keys
@@ -74,15 +88,6 @@ end
 = NAME
 
 HTML::AutoAttr - Just another HTML attribute generator.
-
-== SYNOPSIS
-
-<code>
-require 'HTML/AutoAttr'
-attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
-
-4.times { puts attr.to_s }
-</code>
 
 == DESCRIPTION
 
