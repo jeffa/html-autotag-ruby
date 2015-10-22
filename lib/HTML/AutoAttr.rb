@@ -39,6 +39,7 @@ module HTML
         end
 
         # expects one argument: the key to scrub
+        #
         def key( key )
             key = key.gsub( /\s+/, '' )
             key = key.gsub( /["'>=\/]/, '' )
@@ -53,7 +54,9 @@ module HTML
         end
 
         # expects one argument: the array to rotate
+        #
         # returns the first element before array is rotated
+        #
         def rotate( array )
             val = array.shift
             array.push( val )
@@ -61,6 +64,7 @@ module HTML
         end
 
         # expects one argument: the hash to 'stringify'
+        #
         def stringify( hash )
 
             keys = @sorted ? hash.keys.sort : hash.keys

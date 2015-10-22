@@ -19,8 +19,8 @@ module HTML
         #       Indentation level to start at. (integer)
         #
         #   * sorted
+        #       Sort attribute names of the tag alphabetically. (boolean)
         #
-        Sort attribute names of the tag alphabetically. (boolean)
         def initialize( params = {} )
             @encodes    = params['encodes'] ? 1 : 0
             @indent     = params['indent']  || ''
