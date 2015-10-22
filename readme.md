@@ -10,18 +10,52 @@ Synopsis
 --------
 ```ruby
 require 'HTML/AutoTag'
+auto = HTML::AutoTag.new
 
-auto = HTML::AutoTag.new( 'indent' => '    ' )
+puts auto.tag( 'tag' => 'hr' )
+puts auto.tag( 'tag' => 'h1', 'cdata' => 'heading' )
+puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph', 'attr' => { 'class' => 'para' } )
 
-puts auto.tag( 'tag' => 'p', 'cdata' => 'a paragraph' )
-
-attr = { 'style' => { 'color' => %w{ red green } } }
-data = %w{ one two three four five six seven eight }
-
+attr = { 'style' => { 'color' => %w{ odd even } } }
 puts auto.tag(
     'tag'   => 'ol',
     'attr'  => { 'reversed' => 'reversed' },
-    'cdata' => data.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
+    'cdata' => %w{ 1 2 3 4 5 }.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
+)
+
+tr_attr = { 'class' => %w{ odd even } }
+puts auto.tag(
+    'tag'   => 'table',
+    'attr'  => { 'class' => 'spreadsheet' },
+    'cdata' => Array[
+        {
+            'tag'   => 'tr',
+            'attr'  => tr_attr,
+            'cdata' => {
+                'tag'  => 'th',
+                'attr' => { 'style' => { 'color' => %w{ red green } } },
+                'cdata' => %w{ one two three },
+            },
+        },
+        {
+            'tag'   => 'tr',
+            'attr'  => tr_attr,
+            'cdata' => {
+                'tag'  => 'td',
+                'attr' => { 'style' => { 'color' => %w{ green blue } } },
+                'cdata' => %w{ four five six },
+            },
+        },
+        {
+            'tag'   => 'tr',
+            'attr'  => tr_attr,
+            'cdata' => {
+                'tag'  => 'td',
+                'attr' => { 'style' => { 'color' => %w{ red green } } },
+                'cdata' => %w{ seven eight nine },
+            },
+        },
+    ]
 )
 ```
 

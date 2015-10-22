@@ -8,6 +8,19 @@ module HTML
 
         attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
 
+        #params expects the following keys:
+        #   * encodes
+        #       Endcode HTML entities. (boolean)
+        #
+        #   * indent
+        #       Pretty print results. (string)
+        #
+        #   * level
+        #       Indentation level to start at. (integer)
+        #
+        #   * sorted
+        #
+        Sort attribute names of the tag alphabetically. (boolean)
         def initialize( params = {} )
             @encodes    = params['encodes'] ? 1 : 0
             @indent     = params['indent']  || ''
@@ -17,6 +30,20 @@ module HTML
             @encoder    = HTMLEntities.new
         end
 
+        #params expects the following keys:
+        #
+        #   * tag
+        #       The name of the tag. (string)
+        #
+        #   * attr
+        #       Attributes and values for the tag (hash)
+        #
+        #   * cdata
+        #       The value wrapped by the tag. Types allowed are:
+        #       * scalar - the string to be wrapped by the tag
+        #       * hash - another tag with its own cdata and attributes
+        #       * array - list of scalars or list of more hashes
+        #
         def tag( params = {} )
 
             if params['attr'].kind_of?( HTML::AutoAttr )
@@ -80,107 +107,10 @@ end
 
 HTML::AutoTag - Just another HTML tag generator.
 
-== SYNOPSIS
-
-<code>
-require 'HTML/AutoTag'
-auto = HTML::AutoTag.new
-
-puts auto.tag( 'tag' => 'hr' )
-puts auto.tag( 'tag' => 'h1', 'cdata' => 'heading' )
-puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph', 'attr' => { 'class' => 'para' } )
-
-attr = { 'style' => { 'color' => %w{ odd even } } }
-puts auto.tag(
-    'tag'   => 'ol',
-    'attr'  => { 'reversed' => 'reversed' },
-    'cdata' => %w{ 1 2 3 4 5 }.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
-)
-
-tr_attr = { 'class' => %w{ odd even } }
-puts auto.tag(
-    'tag'   => 'table',
-    'attr'  => { 'class' => 'spreadsheet' },
-    'cdata' => Array[
-        {
-            'tag'   => 'tr',
-            'attr'  => tr_attr,
-            'cdata' => {
-                'tag'  => 'th',
-                'attr' => { 'style' => { 'color' => %w{ red green } } },
-                'cdata' => %w{ one two three },
-            },
-        },
-        {
-            'tag'   => 'tr',
-            'attr'  => tr_attr,
-            'cdata' => {
-                'tag'  => 'td',
-                'attr' => { 'style' => { 'color' => %w{ green blue } } },
-                'cdata' => %w{ four five six },
-            },
-        },
-        {
-            'tag'   => 'tr',
-            'attr'  => tr_attr,
-            'cdata' => {
-                'tag'  => 'td',
-                'attr' => { 'style' => { 'color' => %w{ red green } } },
-                'cdata' => %w{ seven eight nine },
-            },
-        },
-    ]
-)
-</code>
-
 == DESCRIPTION
 
 Generate nested HTML (HTML4, XHTML and HTML5) tags with custom indentation,
 custom encoding and automatic attribute value rotation.
-
-== METHODS
-
-* new
-
-Accepts 4 arguments:
-
-    * encodes
-
-        Endcode HTML entities. (boolean)
-
-    * indent
-
-        Pretty print results. (string)
-
-    * level
-
-        Indentation level to start at. (integer)
-
-    * sorted
-
-        Sort attribute names of the tag alphabetically. (boolean)
-
-* tag
-
-Accepts 3 arguments:
-
-    * tag
-
-        The name of the tag. (string)
-
-    * attr
-
-        Attributes and values for the tag (hash)
-
-    * cdata
-
-        The value wrapped by the tag. Types allowed are:
-
-        * scalar - the string to be wrapped by the tag
-
-        * hash - another tag with its own cdata and attributes
-
-        * array - list of scalars or list of more hashes
 
 == SEE ALSO
 
