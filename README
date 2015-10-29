@@ -1,14 +1,14 @@
-h1. HTML::AutoTag
-p. Just another HTML tag and attribute generator for ruby.
+== HTML::AutoTag
+Just another HTML tag and attribute generator for ruby.
 
-h1. Description
-p. Generate HTML tags and attributes with ease (HTML4, XHTML and HTML5). Handles rotating attributes.
+== Description
+Generate HTML tags and attributes with ease (HTML4, XHTML and HTML5). Handles rotating attributes.
 
-h1. Installation
-bc. gem install HTML-AutoTag
+== Installation
+  gem install HTML-AutoTag
 
-h1. Synopsis
-bc.  require 'HTML/AutoTag'
+== Synopsis
+  require 'HTML/AutoTag'
   auto = HTML::AutoTag.new
 
   puts auto.tag( 'tag' => 'hr' )
@@ -21,19 +21,18 @@ bc.  require 'HTML/AutoTag'
     'attr'  => { 'reversed' => 'reversed' },
     'cdata' => %w{ 1 2 3 4 5 }.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
   )
-end
 
-p. Also includes HTML::AutoAttr which provides rotating attributes:
-bc. require 'HTML/AutoAttr'
+Also includes HTML::AutoAttr which provides rotating attributes:
+
+  require 'HTML/AutoAttr'
   attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
   4.times { puts attr.to_s }
-end
 
-h1. Dependencies
+== Dependencies
 * htmlentities
 
-h1. Methods
-p. With the exception of new, all methods return an HTML table as a string.
+== Methods
+With the exception of new, all methods return an HTML table as a string.
 
 * new( params )
   * encodes=(boolean)
@@ -52,14 +51,14 @@ p. With the exception of new, all methods return an HTML table as a string.
     Attribute names and values for the tag.
   * cdata=(string,hash,array)
     The value wrapped by the tag.
-      * scalar - the string to be wrapped by the tag
-      * hash - another tag with its own cdata and attributes
-      * array - list of scalars or list of more hashes
+    * scalar - the string to be wrapped by the tag
+    * hash - another tag with its own cdata and attributes
+    * array - list of scalars or list of more hashes
 
-h1. More Complex Example
-p. The follow will render an HTML table with row that have alternating class names and cells that have alternating background colors:
+== More Complex Example
+The follow will render an HTML table with row that have alternating class names and cells that have alternating background colors:
 
-bc. require 'HTML/AutoTag'
+  require 'HTML/AutoTag'
   auto = HTML::AutoTag.new
 
   tr_attr = { 'class' => %w{ odd even } }
@@ -96,17 +95,17 @@ bc. require 'HTML/AutoTag'
       },
     ]
   )
-end
-p. See Spreadsheet-HTML for generating HTML tables.
 
-h1. License
-p. MIT
+See Spreadsheet-HTML for generating HTML tables.
 
-h1. Copyright
-p. (C) 2015 Jeff Anderson -- All Rights Reserved
+== License
+MIT
 
-h1. Warranty
-p. This package is provided "as is" and without any express or implied warranties, including, without limitation, the implied warranties of merchantability and fitness for a particular purpose.
+== Copyright
+(C) 2015 Jeff Anderson -- All Rights Reserved
 
-h1. Author
-p. Jeff Anderson jeffa@cpan.org
+== Warranty
+This package is provided "as is" and without any express or implied warranties, including, without limitation, the implied warranties of merchantability and fitness for a particular purpose.
+
+== Author
+Jeff Anderson jeffa@cpan.org
