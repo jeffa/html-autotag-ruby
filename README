@@ -1,0 +1,69 @@
+h1. HTML::AutoTag
+p. Just another HTML tag and attribute generator for ruby.
+
+h1. Description
+p. Generate HTML tags and attributes with ease (HTML4, XHTML and HTML5). Handles rotating attributes.
+
+h1. Installation
+bc. gem install HTML-AutoTag
+
+h1. Synopsis
+bc.  require 'HTML/AutoTag'
+  auto = HTML::AutoTag.new
+
+  puts auto.tag( 'tag' => 'hr' )
+  puts auto.tag( 'tag' => 'h1', 'cdata' => 'heading' )
+  puts auto.tag( 'tag' => 'p', 'cdata' => 'paragraph', 'attr' => { 'class' => 'para' } )
+
+  attr = { 'style' => { 'color' => %w{ odd even } } }
+  puts auto.tag(
+    'tag'   => 'ol',
+    'attr'  => { 'reversed' => 'reversed' },
+    'cdata' => %w{ 1 2 3 4 5 }.map{ |d| { 'tag' => 'li', 'attr' => attr, 'cdata' => d } }
+  )
+end
+
+p. Also includes HTML::AutoAttr which provides rotating attributes:
+bc. require 'HTML/AutoAttr'
+  attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
+  4.times { puts attr.to_s }
+end
+
+h1. Dependencies
+* htmlentities
+
+h1. Methods
+p. With the exception of new, all methods return an HTML table as a string.
+
+* new( params )
+  * encodes=(boolean)
+    Encode HTML entities (via htmlentities)
+  * indent=(string)
+    Pretty print results.
+  * level=(integer)
+    Indentation level to start at.
+  * sorted=(boolean)
+    Sort attribute names of the tag alphabetically.
+
+* tag( params )
+  * tag=(string)
+    The name of the tag.    
+  * attr=(hash)
+    Attribute names and values for the tag.
+  * cdata=(string,hash,array)
+    The value wrapped by the tag.
+      * scalar - the string to be wrapped by the tag
+      * hash - another tag with its own cdata and attributes
+      * array - list of scalars or list of more hashes
+
+h1. License
+p. MIT
+
+h1. Copyright
+p. (C) 2015 Jeff Anderson -- All Rights Reserved
+
+h1. Warranty
+p. This package is provided "as is" and without any express or implied warranties, including, without limitation, the implied warranties of merchantability and fitness for a particular purpose.
+
+h1. Author
+p. Jeff Anderson jeffa@cpan.org
