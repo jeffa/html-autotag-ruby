@@ -46,54 +46,57 @@ module HTML
         #
         def tag( params = {} )
 
-            if params['attr'].kind_of?( HTML::AutoAttr )
-                attr = params['attr']
-            else
-                attr = HTML::AutoAttr.new( params['attr'] || {}, @sorted )
+            # TODO: make these method args
+            tag   = params['tag']
+            attr  = params['attr']
+            cdata = params['cdata']
+
+            unless attr.kind_of?( HTML::AutoAttr )
+                attr = HTML::AutoAttr.new( attr, @sorted )
             end
 
             # emtpy tag
-            unless params['cdata'] and params['cdata'].to_s.length
-                return ( @indent * @level ) + '<' + params['tag'] + attr.to_s + ' />' + @newline
+            unless cdata and cdata.to_s.length
+                return ( @indent * @level ) + '<' + tag + attr.to_s + ' />' + @newline
             end
 
-            cdata = ''
+            string = ''
             no_post_indent = 0
-            if params['cdata'].kind_of?( Array )
+            if cdata.kind_of?( Array )
 
-                if params['cdata'][0].kind_of?( Hash )
+                if cdata[0].kind_of?( Hash )
 
                     @level += 1
-                    cdata = @newline
+                    string = @newline
 
-                    params['cdata'].each do |hash|
-                        cdata += tag( hash )
+                    cdata.each do |hash|
+                        string += tag( hash )
                     end
                     @level -= 1
 
                 else
                     str = ''
-                    params['cdata'].each do |scalar|
-                        str += tag( 'tag' => params['tag'], 'attr' => attr, 'cdata' => scalar )
+                    cdata.each do |scalar|
+                        str += tag( 'tag' => tag, 'attr' => attr, 'cdata' => scalar )
                     end
                     return str
                 end
 
-            elsif params['cdata'].kind_of?( Hash )
+            elsif cdata.kind_of?( Hash )
                 @level += 1
-                cdata = @newline + tag( params['cdata'] )
+                string = @newline + tag( cdata )
                 @level -= 1
 
             else
-                cdata = params['cdata']
-                cdata = @encoder.encode( cdata ) if @encodes == 1
+                string = cdata
+                string = @encoder.encode( string ) if @encodes == 1
                 no_post_indent = 1
             end
 
             return (@indent * @level)  \
-                + '<' + params['tag'] + attr.to_s + '>'  \
-                + cdata.to_s + ( no_post_indent == 1 ? '' : ( @indent * @level ) )  \
-                + '</' + params['tag'] + '>' + @newline
+                + '<' + tag + attr.to_s + '>'  \
+                + string.to_s + ( no_post_indent == 1 ? '' : ( @indent * @level ) )  \
+                + '</' + tag + '>' + @newline
 
         end
 
