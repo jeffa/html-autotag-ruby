@@ -8,19 +8,6 @@ module HTML
 
         attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
 
-        # params expects the following keys:
-        #   * encodes
-        #       Endcode HTML entities. (boolean)
-        #
-        #   * indent
-        #       Pretty print results. (string)
-        #
-        #   * level
-        #       Indentation level to start at. (integer)
-        #
-        #   * sorted
-        #       Sort attribute names of the tag alphabetically. (boolean)
-        #
         def initialize( params = {} )
             @encodes    = params['encodes'] ? 1 : 0
             @indent     = params['indent']  || ''
@@ -30,20 +17,6 @@ module HTML
             @encoder    = HTMLEntities.new
         end
 
-        # params expects the following keys:
-        #
-        #   * tag
-        #       The name of the tag. (string)
-        #
-        #   * attr
-        #       Attributes and values for the tag (hash)
-        #
-        #   * cdata
-        #       The value wrapped by the tag. Types allowed are:
-        #       * scalar - the string to be wrapped by the tag
-        #       * hash - another tag with its own cdata and attributes
-        #       * array - list of scalars or list of more hashes
-        #
         def tag( params = {} )
 
             # TODO: make these method args
