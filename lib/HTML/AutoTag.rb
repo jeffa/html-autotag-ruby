@@ -17,9 +17,9 @@ module HTML
             @encoder    = HTMLEntities.new
         end
 
-        def tag( params = {} )
+        def tag( params )
 
-            # TODO: make these method args
+            # TODO: make these method args if possible
             tag   = params['tag']
             attr  = params['attr']
             cdata = params['cdata']
@@ -43,7 +43,7 @@ module HTML
                     rendered = @newline
 
                     cdata.each do |hash|
-                        rendered += tag( hash )
+                        rendered += tag( 'tag' => hash['tag'], 'attr' => hash['attr'], 'cdata' => hash['cdata'] )
                     end
                     @level -= 1
                 else
@@ -56,7 +56,7 @@ module HTML
 
             elsif cdata.kind_of?( Hash )
                 @level += 1
-                rendered = @newline + tag( cdata )
+                rendered = @newline + tag( 'tag' => cdata['tag'], 'attr' => cdata['attr'], 'cdata' => cdata['cdata'] )
                 @level -= 1
 
             else
@@ -77,29 +77,6 @@ module HTML
 end
 
 =begin rdoc
-
-= NAME
-
-HTML::AutoTag - Just another HTML tag generator.
-
-== DESCRIPTION
-
-Generate nested HTML (HTML4, XHTML and HTML5) tags with custom indentation,
-custom encoding and automatic attribute value rotation.
-
-== SEE ALSO
-
-* http://www.w3.org/TR/html5/syntax.html
-
-== GITHUB
-
-The Github project is https://github.com/jeffa/html-autotag-ruby
-
-== SUPPORT
-
-You can find documentation for this module with the ri command.
-
-ri HTML::AutoTag
 
 == AUTHOR
 

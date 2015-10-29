@@ -89,31 +89,6 @@ end
 
 =begin rdoc
 
-= NAME
-
-HTML::AutoAttr - Just another HTML attribute generator.
-
-== DESCRIPTION
-
-This module will translate nested hash keys and values into HTML
-tag attributes that can have ther values automatically rotated.
-
-== SEE ALSO
-
-* http://www.w3.org/TR/html5/syntax.html#attributes-0
-
-* http://www.w3.org/TR/html-markup/syntax.html#syntax-attributes
-
-== GITHUB
-
-The Github project is https://github.com/jeffa/html-autotag-ruby
-
-== SUPPORT
-
-You can find documentation for this module with the ri command.
-
-ri HTML::AutoAttr
-
 == AUTHOR
 
 Jeff Anderson, <jeffa at cpan.org>
