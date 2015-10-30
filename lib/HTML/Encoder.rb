@@ -286,8 +286,8 @@ module HTML
 
             #$chars =~ s,(?<!\\)([]/]),\\$1,g;
             #$chars =~ s,(?<!\\)\\\z,\\\\,;
-            chars.each_char { |c|
-                string = string.gsub( c, @char2entity[c] )
+            chars.to_s.each_char { |c|
+                string = string.to_s.gsub( c, @char2entity[c] )
             }
 
             return string

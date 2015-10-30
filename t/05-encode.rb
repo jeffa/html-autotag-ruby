@@ -58,4 +58,14 @@ class TestHTML_Encoder < Test::Unit::TestCase
 
   end
 
+  def test_container
+
+
+  end
+
+  def container( params = {} )
+        encoder = HTML::Encoder.new()
+        return encoder.encode( params['rendered'], params['encodes'] ) 
+  end
+
 end

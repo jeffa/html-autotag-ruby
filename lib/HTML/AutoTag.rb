@@ -1,7 +1,6 @@
 require "HTML/AutoTag/version"
 require "HTML/AutoAttr"
 require "HTML/Encoder"
-require "htmlentities"
 
 module HTML
 
@@ -9,14 +8,15 @@ module HTML
 
         attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
 
+        # Defaults to empty string which produces no encoding.
+
         def initialize( params = {} )
-            #@encodes    = params.exists?('encodes') ? params['encodes'] : ''
-            @encodes    = params['encodes'] ? 1 : 0
+            @encodes    = params.has_key?('encodes') ? params['encodes'] : ''
             @indent     = params['indent']  || ''
             @level      = params['level']   || 0
             @sorted     = params['sorted']  ? 1 : 0
             @newline    = params['indent']  ? "\n" : ''
-            @encoder    = HTMLEntities.new
+            @encoder    = HTML::Encoder.new
         end
 
         def tag( params )
@@ -62,8 +62,7 @@ module HTML
                 @level -= 1
 
             else
-                rendered = cdata
-                rendered = @encoder.encode( rendered ) if @encodes == 1
+                rendered = @encoder.encode( cdata, @encodes )
                 no_post_indent = 1
             end
 
