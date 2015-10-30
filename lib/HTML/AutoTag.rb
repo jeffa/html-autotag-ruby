@@ -1,5 +1,6 @@
 require "HTML/AutoTag/version"
 require "HTML/AutoAttr"
+require "HTML/Encoder"
 require "htmlentities"
 
 module HTML
@@ -9,6 +10,7 @@ module HTML
         attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
 
         def initialize( params = {} )
+            #@encodes    = params.exists?('encodes') ? params['encodes'] : ''
             @encodes    = params['encodes'] ? 1 : 0
             @indent     = params['indent']  || ''
             @level      = params['level']   || 0
