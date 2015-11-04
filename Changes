@@ -1,6 +1,7 @@
 Revision history for html-autotag-ruby
 
 1.0.4
+    - fully implemented HTML::Encoder's functionality
 
 1.0.3
     - replaced htmlentities dependency with HTML::Encoder
