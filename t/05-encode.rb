@@ -18,10 +18,23 @@ class TestHTML_Encoder < Test::Unit::TestCase
             encoder.encode( '&<>"\'', '' ),
             'no encodes when chars is empty'
         )
+
+        assert_equal(
+            'hell&#48;',
+            encoder.encode( 'hell0', 0 ),
+            'zero encodes correctly'
+        )
+
         assert_equal(
             'h&#101;llo',
             encoder.encode( 'hello', 'e' ),
             'requested chars encoded correctly'
+        )
+
+        assert_equal(
+            '&amp;b&#97;r',
+            encoder.encode( '&bar', 'a&' ),
+            'ampersand is not double encoded'
         )
 
         assert_equal(

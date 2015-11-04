@@ -137,11 +137,21 @@ module HTML
             string = args[0]
             chars  = args[1].nil? ? '&<>"\'' : args[1]
 
-            chars.to_s.each_char { |c|
-                string = string.to_s.gsub( c, @char2entity[c] || num_entity(c) )
+            lookup = {}
+            chars.to_s.each_char{ |c|
+                lookup[c] = @char2entity[c] || num_entity(c)
             }
 
-            return string
+            encoded = ''
+            string.to_s.each_char { |c|
+                if lookup[c]
+                    encoded += @char2entity[c] || num_entity(c)
+                else
+                    encoded += c
+                end
+            }
+
+            return encoded
 
         end
 
