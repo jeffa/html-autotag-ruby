@@ -35,8 +35,8 @@ Also includes HTML::AutoAttr which provides rotating attributes:
 With the exception of new, all methods return an HTML table as a string.
 
 * new( params )
-  * encodes=(boolean)
-    Encode HTML entities (via htmlentities)
+  * encodes=(string)
+    Encode HTML entities. Pass empty string for default HTML entity encoding or a string with chars you want encoded.
   * indent=(string)
     Pretty print results.
   * level=(integer)
