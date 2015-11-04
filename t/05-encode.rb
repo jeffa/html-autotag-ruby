@@ -102,16 +102,17 @@ class TestHTML_Encoder < Test::Unit::TestCase
 
   def test_upper
 
+        return unless RUBY_VERSION > '1.8.7'
         encoder = HTML::Encoder.new()
 
+        str = eval( '8224.chr(Encoding::UTF_8)' )
         assert_equal(
             '&dagger;',
-            encoder.encode( 8224.chr(Encoding::UTF_8), 8224.chr(Encoding::UTF_8) ),
+            encoder.encode( str, str ),
             'unicode char encoded correctly'
         )
 
-        str = 9824.chr(Encoding::UTF_8)+9827.chr(Encoding::UTF_8)+9829.chr(Encoding::UTF_8)+9830.chr(Encoding::UTF_8)
-
+        str = eval( '9824.chr(Encoding::UTF_8)+9827.chr(Encoding::UTF_8)+9829.chr(Encoding::UTF_8)+9830.chr(Encoding::UTF_8)' )
         assert_equal(
             '&spades;&clubs;&hearts;&diams;',
             encoder.encode( str, str ),
