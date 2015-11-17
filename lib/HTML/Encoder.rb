@@ -93,7 +93,7 @@ module HTML
                 'uml'    => 168.chr,
                 'ordf'   => 170.chr,
                 'laquo'  => 171.chr,
-                'not'    => 172.chr,    # not is a keyword in perl
+                'not'    => 172.chr,
                 'shy'    => 173.chr,
                 'macr'   => 175.chr,
                 'deg'    => 176.chr,
@@ -112,7 +112,7 @@ module HTML
                 'frac12' => 189.chr,
                 'frac34' => 190.chr,
                 'iquest' => 191.chr,
-                'times'  => 215.chr,    # times is a keyword in perl
+                'times'  => 215.chr,
                 'divide' => 247.chr,
             }
 
@@ -142,17 +142,7 @@ module HTML
                 lookup[c] = @char2entity[c] || num_entity(c)
             }
 
-            encoded = ''
-            string.to_s.each_char { |c|
-                if lookup[c]
-                    encoded += @char2entity[c] || num_entity(c)
-                else
-                    encoded += c
-                end
-            }
-
-            return encoded
-
+            return string.to_s.gsub( /./ ) {|c| lookup[c].nil? ? c : lookup[c] }
         end
 
         def encode_hex( *args )
