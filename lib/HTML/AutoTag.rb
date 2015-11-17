@@ -6,12 +6,13 @@ module HTML
 
   class AutoTag
 
-        attr_accessor 'encodes', 'indent', 'level', 'sorted', 'newline'
+        attr_accessor 'encode', 'encodes', 'indent', 'level', 'sorted', 'newline'
 
         # Defaults to empty string which produces no encoding.
 
         def initialize( params = {} )
-            @encodes    = params.has_key?('encodes') ? params['encodes'] : ''
+            @encodes    = params['encodes']
+            @encode     = params['encode']  || !@encodes.nil?
             @indent     = params['indent']  || ''
             @level      = params['level']   || 0
             @sorted     = params['sorted']  ? 1 : 0
@@ -62,7 +63,7 @@ module HTML
                 @level -= 1
 
             else
-                rendered = @encoder.encode( cdata, @encodes )
+                rendered = @encode ? @encoder.encode( cdata, @encodes ) : cdata
                 no_post_indent = 1
             end
 

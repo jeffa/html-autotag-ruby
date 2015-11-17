@@ -132,17 +132,23 @@ module HTML
 
         end
 
-        def encode( *args )
+        def encode( string, *args )
 
-            string = args[0]
-            chars  = args[1].nil? ? '&<>"\'' : args[1]
+            if (! args[0].nil? and ! args[0].to_s.empty?)
+                lookup = {}
+                args[0].to_s.each_char{ |c|
+                    lookup[c] = @char2entity[c].nil? ? num_entity(c) : @char2entity[c]
+                }
+                string = string.to_s.gsub( /./ ) {|c| lookup[c].nil? ? c : lookup[c] }
+            else             
+                # Encode control chars, high bit chars and '<', '&', '>', ''' and '"'
+                string = string.to_s.gsub( /([^\n\r\t !\#\$%\(-;=?-~])/ ) {|c| 
+                    @char2entity[c].nil? ? num_entity(c) : @char2entity[c]
+                }
+            end
 
-            lookup = {}
-            chars.to_s.each_char{ |c|
-                lookup[c] = @char2entity[c] || num_entity(c)
-            }
+            return string
 
-            return string.to_s.gsub( /./ ) {|c| lookup[c].nil? ? c : lookup[c] }
         end
 
         def encode_hex( *args )

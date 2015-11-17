@@ -10,13 +10,13 @@ class TestHTML_Encoder < Test::Unit::TestCase
         assert_equal(
             '&amp;&lt;&gt;&quot;&apos;',
             encoder.encode( '&<>"\'' ),
-            'default chars encoded correctly'
+            'default chars encoded when chars is nil'
         )
 
         assert_equal(
-            '&<>"\'',
+            '&amp;&lt;&gt;&quot;&apos;',
             encoder.encode( '&<>"\'', '' ),
-            'no encodes when chars is empty'
+            'encodes when chars is empty'
         )
 
         assert_equal(
@@ -40,13 +40,13 @@ class TestHTML_Encoder < Test::Unit::TestCase
         assert_equal(
             'hello',
             encoder.encode( 'hello' ),
-            'no encodes when default chars requested'
+            'no encodes when default chars is nil'
         )
 
         assert_equal(
             'hello',
             encoder.encode( 'hello', '' ),
-            'no chars encoded when no chars requested'
+            'no encodes when default chars is empty'
         )
 
         deadbeef = 222.chr + 173.chr + 190.chr + 239.chr
@@ -58,15 +58,15 @@ class TestHTML_Encoder < Test::Unit::TestCase
         )
 
         assert_equal(
-            deadbeef,
+            '&THORN;&shy;&frac34;&iuml;',
             encoder.encode( deadbeef ),
-            'no encodes when default chars requested'
+            'hex codes encoded correctly when chars is nil'
         )
 
         assert_equal(
-            deadbeef,
+            '&THORN;&shy;&frac34;&iuml;',
             encoder.encode( deadbeef, '' ),
-            'no encodes when no chars requested'
+            'hex codes encoded correctly when chars is empty'
         )
 
   end
