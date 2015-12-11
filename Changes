@@ -1,5 +1,7 @@
 Revision history for html-autotag-ruby
 
+1.0.8
+
 1.0.7
     - explicit cast of attr values to string
 
