@@ -18,6 +18,11 @@ class TestTagAttrs < Test::Unit::TestCase
             'paragraph tag correct'
         )
 
+        assert_equal(
+            '<colgroup span="3">0</colgroup>',
+            auto.tag( 'tag' => 'colgroup', 'attr' => { 'span' => 3 }, 'cdata' => 0 ),
+            'paragraph tag correct'
+        )
     end
 
     def test_one_nested

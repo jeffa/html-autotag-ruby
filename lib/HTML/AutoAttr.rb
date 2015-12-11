@@ -48,8 +48,8 @@ module HTML
 
         # expects one argument: the value to scrub
         def val( val )
-            return '' if val.match( /^\s+$/ )
-            val = val.gsub( /"/, '' )
+            return '' if val.to_s.match( /^\s+$/ )
+            val = val.to_s.gsub( /"/, '' )
             return val
         end
 

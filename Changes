@@ -1,6 +1,7 @@
 Revision history for html-autotag-ruby
 
 1.0.7
+    - explicit cast of attr values to string
 
 1.0.6
     - more true implementation of Perl's HTML::Entities
