@@ -21,7 +21,9 @@ class TestTag < Test::Unit::TestCase
 
     def test_empty
         auto = HTML::AutoTag.new
-        assert_equal( '<hr />', auto.tag( 'tag' => 'hr' ),  "empty tag correct" )
+        assert_equal( '<hr />', auto.tag( 'tag' => 'hr' ),  "no cdata correct" )
+        #assert_equal( '<hr />', auto.tag( 'tag' => 'hr', 'cdata' => '' ),  "empty cdata correct" )
+        #assert_equal( '<hr />', auto.tag( 'tag' => 'hr', 'cdata' => ' ' ),  "whitespace cdata correct" )
     end
 
     def test_nonempty
