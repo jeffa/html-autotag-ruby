@@ -36,8 +36,8 @@ module HTML
                 return ( @indent * @level ) + '<' + tag + attr.to_s + ' />' + @newline
             end
 
-            rendered       = ''
-            no_post_indent = 0
+            rendered  = ''
+            no_indent = 0
 
             if cdata.kind_of?( Array )
 
@@ -46,7 +46,7 @@ module HTML
                     rendered = @newline
 
                     cdata.each do |hash|
-                        rendered += tag( 'tag' => hash['tag'], 'attr' => hash['attr'], 'cdata' => hash['cdata'] )
+                        rendered += tag( hash )
                     end
                     @level -= 1
                 else
@@ -59,17 +59,17 @@ module HTML
 
             elsif cdata.kind_of?( Hash )
                 @level += 1
-                rendered = @newline + tag( 'tag' => cdata['tag'], 'attr' => cdata['attr'], 'cdata' => cdata['cdata'] )
+                rendered = @newline + tag( cdata )
                 @level -= 1
 
             else
                 rendered = @encode ? @encoder.encode( cdata, @encodes ) : cdata
-                no_post_indent = 1
+                no_indent = 1
             end
 
             return (@indent * @level)  \
                 + '<' + tag + attr.to_s + '>'  \
-                + rendered.to_s + ( no_post_indent == 1 ? '' : ( @indent * @level ) )  \
+                + rendered.to_s + ( no_indent == 1 ? '' : ( @indent * @level ) )  \
                 + '</' + tag + '>' + @newline
 
         end
