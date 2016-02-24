@@ -10,7 +10,7 @@ Synopsis
 --------
 ```ruby
 require 'HTML/AutoTag'
-auto = HTML::AutoTag.new
+auto = HTML::AutoTag.new( 'indent' => '    ' )
 
 puts auto.tag( 'tag' => 'hr' )
 puts auto.tag( 'tag' => 'h1', 'cdata' => 'heading' )
