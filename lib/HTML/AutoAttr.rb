@@ -95,6 +95,6 @@ Jeff Anderson, <jeffa at cpan.org>
 
 == LICENSE AND COPYRIGHT
 
-Copyright 2016 Jeff Anderson. (See License.md shipped with distro)
+Copyright 2017 Jeff Anderson. (See License.md shipped with distro)
 
 =end
