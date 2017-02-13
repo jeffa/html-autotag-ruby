@@ -67,13 +67,11 @@ attr = HTML::AutoAttr.new( { 'foo' => ['bar','baz','qux'] } )
 4.times { puts attr.to_s }
 ```
 
-[More documentation](http://www.rubydoc.info/gems/HTML-AutoTag) at rubydoc.info
+[More documentation](http://www.rubydoc.info/gems/HTML-AutoTag) at `rubydoc.info`
 
 Installation
 ------------
-```
-gem install HTML-AutoTag
-```
+`gem install HTML-AutoTag`
 
 License and Copyright
 ---------------------
